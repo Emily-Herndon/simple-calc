@@ -4,16 +4,41 @@ class Calculator extends Component {
     state ={
         num1: "",
         num2: "",
-        sum: 0
+        total: 0,
+        operator: "+"
     }
+
     setNum = (e, num) => {
         this.setState({ [num]: parseInt(e.target.value)})
     }
+    setOp = (e, operator) => {
+        this.setState({ operator: e.target.value})
+    }
     calcTotal = (e) => {
         e.preventDefault()
-        this.setState({
-            sum: parseInt(this.state.num1) + parseInt(this.state.num2)
-        })
+        switch (this.state.operator){
+            case "+":
+                this.setState({
+                    total: parseInt(this.state.num1) + parseInt(this.state.num2)
+                })
+                break;
+            case "-":
+                this.setState({
+                    total: parseInt(this.state.num1) - parseInt(this.state.num2)
+                })
+                break;
+            case "*":
+                this.setState({
+                    total: parseInt(this.state.num1) * parseInt(this.state.num2)
+                })
+                break;
+            case "/":
+                this.setState({
+                    total: parseInt(this.state.num1) / parseInt(this.state.num2)
+                })
+                break;
+
+        }
     } 
 
     render(){
@@ -29,7 +54,15 @@ class Calculator extends Component {
                         value={this.state.num1}
                         onChange= { (e) => this.setNum(e, 'num1')}
                     />
-                    <span>+</span>
+                    <select 
+                    onChange={this.setOp}
+                    id="operator" 
+                    name="operator">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                    </select>
                     <input type="number"
                         name='num2'
                         placeholder='Enter your second number'
@@ -37,7 +70,7 @@ class Calculator extends Component {
                         onChange={ (e) => this.setNum(e, 'num2')}
                     />
                     <button onClick={this.calcTotal}>=</button>
-                    <h3>{this.state.sum}</h3>
+                    <h3>{this.state.total}</h3>
                 </div>
             </div>
         )
