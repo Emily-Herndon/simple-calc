@@ -21,23 +21,24 @@ class Calculator extends Component {
                 this.setState({
                     total: parseInt(this.state.num1) + parseInt(this.state.num2)
                 })
-                break;
+                break
             case "-":
                 this.setState({
                     total: parseInt(this.state.num1) - parseInt(this.state.num2)
                 })
-                break;
+                break
             case "*":
                 this.setState({
                     total: parseInt(this.state.num1) * parseInt(this.state.num2)
                 })
-                break;
+                break
             case "/":
                 this.setState({
                     total: parseInt(this.state.num1) / parseInt(this.state.num2)
                 })
-                break;
-
+                break
+            default:
+                console.warn(`${this.state.operator} is not a kind of math I'm aware of`)
         }
     } 
 
